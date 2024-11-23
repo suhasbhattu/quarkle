@@ -1,3 +1,4 @@
-npm test
+npm run build
+npm run test
 prettier --write .
 eslint . --fix
