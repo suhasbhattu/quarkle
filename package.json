@@ -8,8 +8,9 @@
     "test": "jest",
     "prepare": "husky"
   },
-  "author": "Suhas Bhattu suhasbhattu@gmail.com",
+  "author": "Suhas Bhattu <suhasbhattu@gmail.com>",
   "license": "ISC",
+  "homepage": "https://quarkle-documentation.vercel.app/",
   "description": "quarkle is the JavaScript util library providing support of all data types and data structures.",
   "devDependencies": {
     "@babel/core": "7.26.0",
@@ -31,5 +32,13 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/suhasbhattu/quarkle.git"
-  }
+  },
+  "files": [
+    "lib",
+    "README.md",
+    "package.json"
+  ],
+  "keywords": [
+    "number"
+  ]
 }
