@@ -92,3 +92,139 @@ export const combinations = (n: number, k: number): number => {
   }
   return factorial(n) / (factorial(k) * factorial(n - k));
 };
+
+const decimalChangeBase = (
+  n: number,
+  base: "binary" | "octal" | "hexadecimal",
+): string => {
+  let baseNum = 10;
+  switch (base) {
+    case "binary":
+      baseNum = 2;
+      break;
+    case "octal":
+      baseNum = 8;
+      break;
+    case "hexadecimal":
+      baseNum = 16;
+      break;
+  }
+  return n.toString(baseNum);
+};
+
+const binaryChangeBase = (
+  n: string,
+  base: "decimal" | "octal" | "hexadecimal",
+): number | string => {
+  let result: number | string = -1;
+  switch (base) {
+    case "decimal":
+      result = parseInt(n, 2);
+      break;
+    case "octal":
+      result = parseInt(n, 2).toString(8);
+      break;
+    case "hexadecimal":
+      result = parseInt(n, 2).toString(16);
+      break;
+  }
+  return result;
+};
+
+const octalChangeBase = (
+  n: string,
+  base: "decimal" | "binary" | "hexadecimal",
+): number | string => {
+  let result: number | string = -1;
+  switch (base) {
+    case "decimal":
+      result = parseInt(n, 8);
+      break;
+    case "binary":
+      result = parseInt(n, 8).toString(2);
+      break;
+    case "hexadecimal":
+      result = parseInt(n, 8).toString(16);
+      break;
+  }
+  return result;
+};
+
+const hexadecimalChangeBase = (
+  n: string,
+  base: "decimal" | "binary" | "octal",
+): number | string => {
+  let result: number | string = -1;
+  switch (base) {
+    case "decimal":
+      result = parseInt(n, 16);
+      break;
+    case "binary":
+      result = parseInt(n, 16).toString(2);
+      break;
+    case "octal":
+      result = parseInt(n, 16).toString(8);
+      break;
+  }
+  return result;
+};
+
+/**
+ * Changes the base of the given number or string to the other base.
+ * @param number This can be a decimal number or binary/octal/hexadecimal string.
+ * @param sourceBase The base of the given number.
+ * @param targetBase The base which the given number should get converted to.
+ * @returns The converted number or string.
+ */
+export const changeBase = (
+  number: number | string,
+  sourceBase: "decimal" | "binary" | "octal" | "hexadecimal",
+  targetBase: "decimal" | "binary" | "octal" | "hexadecimal",
+): number | string | void => {
+  if (sourceBase === targetBase) {
+    return number;
+  }
+  if (
+    sourceBase === "decimal" &&
+    targetBase !== "decimal" &&
+    typeof number === "number"
+  ) {
+    return decimalChangeBase(number, targetBase);
+  } else if (
+    sourceBase === "binary" &&
+    targetBase !== "binary" &&
+    typeof number === "string"
+  ) {
+    if (!/^[01]+$/.test(number)) {
+      throw new Error(
+        "The given string is not a valid binary. It should contain only 0s and 1s.",
+      );
+    } else {
+      return binaryChangeBase(number, targetBase);
+    }
+  } else if (
+    sourceBase === "octal" &&
+    targetBase !== "octal" &&
+    typeof number === "string"
+  ) {
+    if (!/^[0-7]+$/.test(number)) {
+      throw new Error(
+        "The given string is not a valid octal. It should contain numbers in the range [0-7].",
+      );
+    } else {
+      return octalChangeBase(number, targetBase);
+    }
+  } else if (
+    sourceBase === "hexadecimal" &&
+    targetBase !== "hexadecimal" &&
+    typeof number === "string"
+  ) {
+    if (!/^[0-9a-fA-F]+$/.test(number)) {
+      throw new Error(
+        "The given string is not a valid hexadecimal. It should contain numbers in the range [0-9] and alphabets in the range [a-f] or [A-F].",
+      );
+    } else {
+      return hexadecimalChangeBase(number, targetBase);
+    }
+  }
+};
