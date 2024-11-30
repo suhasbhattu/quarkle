@@ -40,7 +40,7 @@ export const isPrime = (number: number): boolean => {
 };
 
 /**
- * Checks if the number is palindrome or not.
+ * Checks if the given number is palindrome or not.
  * @param number
  * @returns 'true' if number is palindrome, otherwise 'false'.
  */

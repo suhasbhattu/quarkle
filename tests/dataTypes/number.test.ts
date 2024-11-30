@@ -9,7 +9,7 @@ import {
   changeBase,
 } from "../../src";
 
-describe("number tests", () => {
+describe("Number tests", () => {
   test("Reverse Number", () => {
     expect(reverseNumber(132)).toBe(231);
     expect(reverseNumber(-9658)).toBe(-8569);
