@@ -33,9 +33,6 @@
     "type": "git",
     "url": "https://github.com/suhasbhattu/quarkle.git"
   },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
   "files": [
     "lib",
     "README.md",
