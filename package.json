@@ -1,6 +1,6 @@
 {
   "name": "quarkle",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -34,7 +34,7 @@
     "url": "https://github.com/suhasbhattu/quarkle.git"
   },
   "files": [
-    "lib",
+    "dist",
     "README.md",
     "package.json"
   ],
