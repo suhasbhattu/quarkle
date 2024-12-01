@@ -1,3 +1,5 @@
+import { sort } from "../../utils/utils";
+
 /**
  * Reverses the given string. It doesn't perform in place reverse but returns a new reverse string.
  * @param string
@@ -81,4 +83,16 @@ export const titleCase = (string: string): string => {
     /\b\S+\b/g,
     (text) => text.charAt(0).toUpperCase() + text.substring(1).toLowerCase(),
   );
+};
+
+/**
+ * Sort the given string in ascending and descending order
+ * @param string
+ * @param descending
+ * @returns Sorted string
+ */
+export const sortString = (string: string, descending?: boolean): string => {
+  const array = [...string];
+  sort(array, descending);
+  return array.join("");
 };
