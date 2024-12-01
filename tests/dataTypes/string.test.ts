@@ -4,6 +4,7 @@ import {
   getWords,
   isStringPalindrome,
   reverseString,
+  sortString,
   stringCount,
   titleCase,
 } from "../../src";
@@ -80,5 +81,10 @@ describe("String tests", () => {
       "Pizza With Cheese Toppings In The Venice, Italy.",
     );
     expect(titleCase("")).toBe("");
+  });
+  test("Sort String", () => {
+    expect(sortString("mississippi")).toBe("iiiimppssss");
+    expect(sortString("structure", true)).toBe("uuttsrrec");
+    expect(sortString("vision-2040")).toBe("-0024iinosv");
   });
 });
