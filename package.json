@@ -34,7 +34,7 @@
     "url": "https://github.com/suhasbhattu/quarkle.git"
   },
   "files": [
-    "lib",
+    "dist",
     "README.md",
     "package.json"
   ],
