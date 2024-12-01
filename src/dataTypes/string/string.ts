@@ -64,7 +64,7 @@ export const capitalize = (string: string): string => {
   if (string.length === 0) {
     return string;
   }
-  let firstChar = string[0];
+  const firstChar = string[0];
   return firstChar.toUpperCase() + string.slice(1).toLowerCase();
 };
 
