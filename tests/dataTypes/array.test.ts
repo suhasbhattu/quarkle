@@ -14,7 +14,7 @@ import {
   rootMeanSquare,
   standardDeviation,
   variance,
-} from "../../src/dataTypes/array";
+} from "../../src";
 
 describe("Array Tests", () => {
   test("Array Product", () => {
