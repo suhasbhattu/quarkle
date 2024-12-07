@@ -1,4 +1,4 @@
-import { clone, sort } from "../../utils/utils";
+import { clone, sort } from "../../utils";
 
 /**
  * Returns the product of all items in the list.
@@ -62,7 +62,7 @@ export const mean = (
 export const median = (list: number[]): number => {
   const listClone = clone(list);
   sort(listClone);
-  let medianValue = 0;
+  let medianValue;
   const length = listClone.length;
   const midValue = Math.floor(length / 2);
   if (length % 2 === 0) {
@@ -79,7 +79,6 @@ export const median = (list: number[]): number => {
  * @returns mode of the list. If multiple numbers have the same highest frequency, it will return an array of mode values.
  */
 export const mode = (list: number[]): number | number[] => {
-  let modeValue = [];
   const freq: any = {};
   for (const item of list) {
     if (freq[item] == null) {
@@ -93,7 +92,7 @@ export const mode = (list: number[]): number | number[] => {
     .map((key) => [key, freq[key]])
     .sort((a, b) => b[1] - a[1]);
   const max = sortedFreq[0];
-  modeValue = sortedFreq.filter((a) => a[1] === max[1]);
+  const modeValue = sortedFreq.filter((a) => a[1] === max[1]);
   return modeValue.length === 1
     ? Number(modeValue[0][0])
     : modeValue.map((a) => Number(a[0]));

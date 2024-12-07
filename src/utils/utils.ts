@@ -12,11 +12,18 @@ const compareStrings = (string1: string, string2: string) => {
   return string1.toLowerCase().localeCompare(string2.toLowerCase());
 };
 
+const compareBoolean = (flag1: boolean, flag2: boolean): boolean => {
+  return flag1 === flag2;
+};
+
 const compareArrays = (arr1: any[], arr2: any[]) => {
   if (arr1.length !== arr2.length) {
     return false;
   } else {
     for (let i = 0; i < arr1.length; i++) {
+      if (typeof arr1[i] !== typeof arr2[i]) {
+        return false;
+      }
       if (
         (typeof arr1[i] === "number" &&
           typeof arr2[i] === "number" &&
@@ -26,7 +33,7 @@ const compareArrays = (arr1: any[], arr2: any[]) => {
           compareStrings(arr1[i], arr2[i]) !== 0) ||
         (typeof arr1[i] === "boolean" &&
           typeof arr2[i] === "boolean" &&
-          arr1[i] !== arr2[i]) ||
+          !compareBoolean(arr1[i], arr2[i])) ||
         (Array.isArray(arr1[i]) &&
           Array.isArray(arr2[i]) &&
           !compareArrays(arr1[i], arr2[i])) ||
@@ -59,7 +66,7 @@ const compareObjects = (obj1: any, obj2: any): boolean => {
         compareStrings(obj1[key], obj2[key]) !== 0) ||
       (typeof obj1[key] === "boolean" &&
         typeof obj2[key] === "boolean" &&
-        obj1[key] !== obj2[key]) ||
+        compareBoolean(obj1[key], obj2[key])) ||
       (Array.isArray(obj1[key]) &&
         Array.isArray(obj2[key]) &&
         !compareArrays(obj1[key], obj2[key])) ||
@@ -79,7 +86,24 @@ const compare = (item1: any, item2: any) => {
   } else if (typeof item1 === "string" && typeof item2 === "string") {
     return compareStrings(item1, item2);
   } else if (typeof item1 === "boolean" && typeof item2 === "boolean") {
-    return item1 === item2;
+    return compareBoolean(item1, item2);
+  } else if (Array.isArray(item1) && Array.isArray(item2)) {
+    return compareArrays(item1, item2);
+  } else if (typeof item1 === "object" && typeof item2 === "object") {
+    return compareObjects(item1, item2);
+  }
+};
+
+export const isEqual = (item1: any, item2: any) => {
+  if (typeof item1 !== typeof item2) {
+    return false;
+  }
+  if (typeof item1 === "number" && typeof item2 === "number") {
+    return compareNumbers(item1, item2) === 0;
+  } else if (typeof item1 === "string" && typeof item2 === "string") {
+    return compareStrings(item1, item2) === 0;
+  } else if (typeof item1 === "boolean" && typeof item2 === "boolean") {
+    return compareBoolean(item1, item2);
   } else if (Array.isArray(item1) && Array.isArray(item2)) {
     return compareArrays(item1, item2);
   } else if (typeof item1 === "object" && typeof item2 === "object") {
