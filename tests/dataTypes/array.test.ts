@@ -1,5 +1,7 @@
 import { describe, expect, test } from "@jest/globals";
 import {
+  minArray,
+  maxArray,
   arrayProduct,
   gcd,
   histogram,
@@ -17,6 +19,14 @@ import {
 } from "../../src";
 
 describe("Array Tests", () => {
+  test("Minimum Array", () => {
+    expect(minArray([1, 3, 2, 6, 5, 8, 7, 0, 3])).toBe(0);
+    expect(minArray([32, 67, 98, 23, 54, 61, 29, 74], 4)).toBe(54);
+  });
+  test("Maximum Array", () => {
+    expect(maxArray([1, 3, 2, 6, 5, 8, 7, 0, 3])).toBe(8);
+    expect(maxArray([32, 67, 98, 23, 54, 61, 29, 74], 4)).toBe(61);
+  });
   test("Array Product", () => {
     expect(arrayProduct([2, 3, 6, 34, 90, 1])).toBe(110160);
     expect(arrayProduct([-34, -90, 45, 9, -3])).toBe(-3717900);
