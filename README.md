@@ -21,4 +21,6 @@ const number = 5698;
 reverseNumber(number); // Returns the result 8965
 ```
 
-You can check the whole documentation [here](https://quarkle-documentation.vercel.app/ "quarkle library").
+Currently `number`, `string` and `array` data types are supported.
+
+You can check the whole documentation [here](https://quarkle-docs.vercel.app/ "quarkle library").

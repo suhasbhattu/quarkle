@@ -1,6 +1,6 @@
 {
   "name": "quarkle",
-  "version": "1.9.0",
+  "version": "1.10.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -10,7 +10,7 @@
   },
   "author": "Suhas Bhattu <suhasbhattu@gmail.com>",
   "license": "ISC",
-  "homepage": "https://quarkle-documentation.vercel.app/",
+  "homepage": "https://quarkle-docs.vercel.app/",
   "description": "quarkle is the JavaScript util library providing support of all data types and data structures.",
   "devDependencies": {
     "@babel/core": "7.26.0",
@@ -40,6 +40,7 @@
   ],
   "keywords": [
     "number",
-    "string"
+    "string",
+    "array"
   ]
 }
