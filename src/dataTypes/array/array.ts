@@ -1,6 +1,28 @@
 import { clone, sort } from "../../utils";
 
 /**
+ * Returns the `k`'th minimum element of the given array. `k` is 1-indexed variable with default value as 1.
+ * @param list
+ * @param k
+ * @returns The `k`'th minimum element af the given array.
+ */
+export const minArray = (list: number[], k?: number): number => {
+  sort(list);
+  return list[(k ?? 1) - 1];
+};
+
+/**
+ * Returns the `k`'th maximum element of the given array. `k` is 1-indexed variable with default value as 1.
+ * @param list
+ * @param k
+ * @returns The `k`'th maximum element of the given array.
+ */
+export const maxArray = (list: number[], k?: number): number => {
+  sort(list, true);
+  return list[(k ?? 1) - 1];
+};
+
+/**
  * Returns the product of all items in the list.
  * @param list
  * @returns The product of the list.
