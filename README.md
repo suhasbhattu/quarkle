@@ -21,6 +21,45 @@ const number = 5698;
 reverseNumber(number); // Returns the result 8965
 ```
 
-Currently `number`, `string` and `array` data types are supported.
+Currently `number`, `string` and `array` data types are supported. Operations supported on the data types are:
+
+### Number
+
+- Reverse Number
+- Prime Number
+- Palindrome Number
+- Factorial
+- Permutations
+- Combinations
+- Change Base
+
+### String
+
+- Reverse String
+- Palindrome String
+- Get Words
+- String Count
+- Capitalize
+- Title Case
+
+### Array
+
+- Minimum Array
+- Maximum Array
+- Array Product
+- Rotate Array
+- Mean
+- Median
+- Mode
+- Root Mean Square
+- Variance
+- Standard Deviation
+- Remove Duplicates
+- Histogram
+- Greatest Common Divisor (GCD)
+- Least Common Multiple (LCM)
+- Matrix Addition
+- Matrix Subtraction
+- Matrix Multiplication
 
 You can check the whole documentation [here](https://quarkle-docs.vercel.app/ "quarkle library").

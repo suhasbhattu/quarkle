@@ -3,6 +3,7 @@ import {
   minArray,
   maxArray,
   arrayProduct,
+  rotateArray,
   gcd,
   histogram,
   lcm,
@@ -32,6 +33,23 @@ describe("Array Tests", () => {
     expect(arrayProduct([-34, -90, 45, 9, -3])).toBe(-3717900);
     expect(arrayProduct([90, 87, 0, -34, -900, -1245])).toBe(0);
     expect(arrayProduct([90, 87, 0, -34, 900, -1245])).toBe(0);
+  });
+  test("Rotate Array", () => {
+    const list = [1, 2, 3, 4, 5];
+    rotateArray(list, 3);
+    expect(list).toStrictEqual([3, 4, 5, 1, 2]);
+    rotateArray(list, 3, "left");
+    expect(list).toStrictEqual([1, 2, 3, 4, 5]);
+    rotateArray(list, 126);
+    expect(list).toStrictEqual([5, 1, 2, 3, 4]);
+    rotateArray(list, 126, "left");
+    expect(list).toStrictEqual([1, 2, 3, 4, 5]);
+    rotateArray(list, -3);
+    expect(list).toStrictEqual([4, 5, 1, 2, 3]);
+    rotateArray(list, -123, "right");
+    expect(list).toStrictEqual([2, 3, 4, 5, 1]);
+    rotateArray(list, -1, "left");
+    expect(list).toStrictEqual([1, 2, 3, 4, 5]);
   });
   test("Array Mean", () => {
     expect(mean([3, 5, 9, 5, 7, 2])).toBe(5.17);
