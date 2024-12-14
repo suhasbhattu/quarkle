@@ -41,6 +41,10 @@
   "keywords": [
     "number",
     "string",
-    "array"
+    "array",
+    "matrix",
+    "dataStructures",
+    "stack",
+    "queue"
   ]
 }

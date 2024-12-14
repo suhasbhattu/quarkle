@@ -2,7 +2,7 @@ import { describe, expect, test } from "@jest/globals";
 import { Queue } from "../../src";
 
 describe("Queue", () => {
-  test("Queue Operations", async () => {
+  test("Queue Operations", () => {
     const queue = new Queue();
     queue.enqueue(2);
     queue.enqueue(3);

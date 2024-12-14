@@ -17,6 +17,8 @@ import {
   rootMeanSquare,
   standardDeviation,
   variance,
+  matrixTranspose,
+  scalarMatrixMultiplication,
 } from "../../src";
 
 describe("Array Tests", () => {
@@ -223,5 +225,57 @@ describe("Array Tests", () => {
     }).toThrow(
       "Number of columns in first matrix should be same as number of rows in second matrix",
     );
+  });
+  test("Matrix Scalar Multiplication", () => {
+    expect(
+      scalarMatrixMultiplication(
+        [
+          [1, 6],
+          [9, 3],
+          [6, 0],
+        ],
+        -2,
+      ),
+    ).toStrictEqual([
+      [-2, -12],
+      [-18, -6],
+      [-12, 0],
+    ]);
+  });
+  test("Matrix Transpose", () => {
+    expect(
+      matrixTranspose([
+        [1, 2, 3],
+        [4, 5, 6],
+        [7, 8, 9],
+      ]),
+    ).toStrictEqual([
+      [1, 4, 7],
+      [2, 5, 8],
+      [3, 6, 9],
+    ]);
+    expect(
+      matrixTranspose([
+        [0, 4],
+        [7, 0],
+        [3, 1],
+      ]),
+    ).toStrictEqual([
+      [0, 7, 3],
+      [4, 0, 1],
+    ]);
+    expect(
+      matrixTranspose(
+        matrixTranspose([
+          [0, 4],
+          [7, 0],
+          [3, 1],
+        ]),
+      ),
+    ).toStrictEqual([
+      [0, 4],
+      [7, 0],
+      [3, 1],
+    ]);
   });
 });
