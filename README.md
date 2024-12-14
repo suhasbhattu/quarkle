@@ -62,4 +62,27 @@ Currently `number`, `string` and `array` data types are supported. Operations su
 - Matrix Subtraction
 - Matrix Multiplication
 
+Also, `stack` and `queue` data structures are currently supported with following operations:
+
+### Stack
+
+- Push
+- Pop
+- Peek
+- isFull
+- isEmpty
+- Length
+- Search
+
+### Queue
+
+- Enqueue
+- Dequeue
+- isFull
+- isEmpty
+- Get Front
+- Get Rear
+- Length
+- Search
+
 You can check the whole documentation [here](https://quarkle-docs.vercel.app/ "quarkle library").
