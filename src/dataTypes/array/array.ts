@@ -362,3 +362,51 @@ export const matrixMultiplication = (
     );
   }
 };
+
+/**
+ * Multiplies the given matrix with the scalar value and return the result.
+ * @param matrix
+ * @param scalar Scalar value to be multiplied.
+ * @returns The multiplication of matrix with the scalar value.
+ */
+export const scalarMatrixMultiplication = (
+  matrix: number[][],
+  scalar: number,
+): number[][] => {
+  const m = matrix.length;
+  const n = matrix[0].length;
+  const result: any[] = new Array(m);
+  for (let i = 0; i < m; i++) {
+    result[i] = new Array(n);
+  }
+  for (let i = 0; i < m; i++) {
+    for (let j = 0; j < n; j++) {
+      let multiplication = scalar * matrix[i][j];
+      if (multiplication === 0 && multiplication.toLocaleString()[0] === "-") {
+        multiplication = 0;
+      }
+      result[i][j] = multiplication;
+    }
+  }
+  return result;
+};
+
+/**
+ * Converts rows into columns and columns into rows and returns result. This will return a new matrix as transpose.
+ * @param matrix
+ * @returns The transpose of the given matrix.
+ */
+export const matrixTranspose = (matrix: any[][]): any[][] => {
+  const m = matrix.length;
+  const n = matrix[0].length;
+  const result: any[] = new Array(n);
+  for (let i = 0; i < n; i++) {
+    result[i] = new Array(m);
+  }
+  for (let i = 0; i < m; i++) {
+    for (let j = 0; j < n; j++) {
+      result[j][i] = matrix[i][j];
+    }
+  }
+  return result;
+};

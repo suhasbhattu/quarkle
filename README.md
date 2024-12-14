@@ -2,6 +2,9 @@
 
 quarkle provides utility functions and classes to make the job easy for different operations.
 
+[![Version](https://img.shields.io/npm/v/quarkle)](https://www.npmjs.com/package/quarkle)
+[![Downloads](https://img.shields.io/npm/dm/quarkle)](https://www.npmjs.com/package/quarkle)
+
 ## Installation
 
 Using npm:
@@ -58,9 +61,14 @@ Currently `number`, `string` and `array` data types are supported. Operations su
 - Histogram
 - Greatest Common Divisor (GCD)
 - Least Common Multiple (LCM)
+
+### Matrix
+
 - Matrix Addition
 - Matrix Subtraction
 - Matrix Multiplication
+- Scalar Multiplication
+- Matrix Transpose
 
 Also, `stack` and `queue` data structures are currently supported with following operations:
 
