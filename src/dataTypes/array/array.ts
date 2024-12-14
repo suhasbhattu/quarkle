@@ -38,6 +38,39 @@ export const arrayProduct = (list: number[]): number => {
 };
 
 /**
+ * Rotate the given array to the `left` or `right` direction by given `position`. If the position is negative, the given (or default) direction is switched.
+ * @param list
+ * @param position
+ * @param direction Optional with the possible values `left` and 'right`. Default direction is `right`.
+ * @returns void. This will perform rotate in place.
+ */
+export const rotateArray = (
+  list: any[],
+  position: number,
+  direction: "left" | "right" = "right",
+): void => {
+  const length = list.length;
+  position = position % length;
+  if (position < 0) {
+    position = -position;
+    direction = direction === "left" ? "right" : "left";
+  }
+  if (direction === "left") {
+    position = length - position;
+  }
+  const reverse = (left: number, right: number) => {
+    while (left < right) {
+      [list[left], list[right]] = [list[right], list[left]];
+      left++;
+      right--;
+    }
+  };
+  reverse(0, list.length - 1);
+  reverse(0, position - 1);
+  reverse(position, length - 1);
+};
+
+/**
  * Returns the mean or average of the list.
  * @param list The list of numbers.
  * @param type The type of the mean `arithmetic`, `geometric`, `harmonic` and `rms`. The default value is `arithmetic`.
