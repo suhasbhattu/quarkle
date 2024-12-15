@@ -493,7 +493,7 @@ export const matrixAdjoint = (matrix: number[][]): number[][] => {
 };
 
 /**
- * Returns the inverse of the given matrix.
+ * Returns the inverse of the given matrix. When matrix is multiplied with its reverse, it gives an identity matrix.
  * @param matrix
  * @returns The inverse of the matrix.
  */
@@ -522,4 +522,24 @@ export const matrixInverse = (matrix: number[][]): number[][] => {
     }
   }
   return inverseArray;
+};
+
+/**
+ * Flatten the multidimensional matrix into 1-D array.
+ * @param matrix
+ * @returns The flattened array.
+ */
+export const matrixFlatten = (matrix: any[]): any[] => {
+  const flatMatrix: any[] = [];
+  const flatten = (matrix: any[], flatMatrix: any[]) => {
+    for (let i = 0; i < matrix.length; i++) {
+      if (Array.isArray(matrix[i])) {
+        flatten(matrix[i], flatMatrix);
+      } else {
+        flatMatrix.push(matrix[i]);
+      }
+    }
+  };
+  flatten(matrix, flatMatrix);
+  return flatMatrix;
 };

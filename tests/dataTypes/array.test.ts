@@ -22,6 +22,7 @@ import {
   matrixInverse,
   matrixAdjoint,
   matrixDeterminant,
+  matrixFlatten,
 } from "../../src";
 
 describe("Array Tests", () => {
@@ -352,6 +353,24 @@ describe("Array Tests", () => {
       [-5, 4, 1],
     ]);
     expect(
+      matrixMultiplication(
+        [
+          [1, 2, 3],
+          [0, 1, 4],
+          [5, 6, 0],
+        ],
+        [
+          [-24, 18, 5],
+          [20, -15, -4],
+          [-5, 4, 1],
+        ],
+      ),
+    ).toStrictEqual([
+      [1, 0, 0],
+      [0, 1, 0],
+      [0, 0, 1],
+    ]);
+    expect(
       matrixInverse([
         [0, 0, -1, 2],
         [0, 1, 0, 0],
@@ -391,7 +410,20 @@ describe("Array Tests", () => {
         [1, 0, 1],
         [2, 1, -1],
       ]),
-    ).toThrow("his is a singular matrix, cannot find its inverse!!");
+    ).toThrow("This is a singular matrix, cannot find its inverse!!");
     expect(matrixInverse([[5]])).toStrictEqual([[0.2]]);
+  });
+  test("Matrix Flatten", () => {
+    expect(matrixFlatten([0, 1, 2, [3, 4]])).toStrictEqual([0, 1, 2, 3, 4]);
+    expect(matrixFlatten([0, 1, [2, [3, [4, 5]]]])).toStrictEqual([
+      0, 1, 2, 3, 4, 5,
+    ]);
+    expect(
+      matrixFlatten([
+        [1, 2, 3],
+        [0, 1, 4],
+        [5, 6, 0],
+      ]),
+    ).toStrictEqual([1, 2, 3, 0, 1, 4, 5, 6, 0]);
   });
 });
