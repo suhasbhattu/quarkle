@@ -69,6 +69,10 @@ Currently `number`, `string` and `array` data types are supported. Operations su
 - Matrix Multiplication
 - Scalar Multiplication
 - Matrix Transpose
+- Matrix Determinant
+- Matrix Adjoint
+- Matrix Inverse
+- Matrix Flatten
 
 Also, `stack` and `queue` data structures are currently supported with following operations:
 

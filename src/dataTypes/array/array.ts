@@ -410,3 +410,136 @@ export const matrixTranspose = (matrix: any[][]): any[][] => {
   }
   return result;
 };
+
+const cofactor = (matrix: number[][], i: number, j: number): number[][] => {
+  const n = matrix.length;
+  let currentI = 0;
+  let currentJ = 0;
+  const result: number[][] = new Array(n - 1);
+  for (let index = 0; index < n - 1; index++) {
+    result[index] = new Array(n - 1).fill(0);
+  }
+  for (let row = 0; row < n; row++) {
+    for (let column = 0; column < n; column++) {
+      if (row !== i && column !== j) {
+        result[currentI][currentJ] = matrix[row][column];
+        currentJ++;
+        if (currentJ >= n - 1) {
+          currentJ = 0;
+          currentI++;
+        }
+      }
+    }
+  }
+  return result;
+};
+
+/**
+ * Returns the determinant of the given matrix.
+ * @param matrix
+ * @returns The determinant of the matrix.
+ */
+export const matrixDeterminant = (matrix: number[][]): number => {
+  const n = matrix.length;
+  const m = matrix[0].length;
+  if (n !== m) {
+    throw new Error(
+      "Given matrix is not a square matrix, determinant cannot be calculated.",
+    );
+  }
+  if (n === 1) {
+    return matrix[0][0];
+  }
+  let determinant = 0;
+  let sign = 1;
+  for (let i = 0; i < n; i++) {
+    const cofactorMatrix = cofactor(matrix, 0, i);
+    determinant += sign * matrix[0][i] * matrixDeterminant(cofactorMatrix);
+    sign = -sign;
+  }
+  return determinant;
+};
+
+/**
+ * Returns the adjoint of the given matrix.
+ * @param matrix
+ * @returns The adjoint of the matrix.
+ */
+export const matrixAdjoint = (matrix: number[][]): number[][] => {
+  const m = matrix.length;
+  const n = matrix[0].length;
+  if (m !== n) {
+    throw new Error(
+      "Given matrix is not a square matrix, adjoint cannot be calculated.",
+    );
+  }
+  const adjoint = new Array(m);
+  for (let i = 0; i < m; i++) {
+    adjoint[i] = new Array(m).fill(0);
+  }
+  if (m === 1) {
+    adjoint[0][0] = 1;
+  } else {
+    let sign = 1;
+    for (let i = 0; i < n; i++) {
+      for (let j = 0; j < n; j++) {
+        const cofactorArray = cofactor(matrix, i, j);
+        sign = (i + j) % 2 === 0 ? 1 : -1;
+        adjoint[j][i] = sign * matrixDeterminant(cofactorArray);
+      }
+    }
+  }
+  return adjoint;
+};
+
+/**
+ * Returns the inverse of the given matrix. When matrix is multiplied with its reverse, it gives an identity matrix.
+ * @param matrix
+ * @returns The inverse of the matrix.
+ */
+export const matrixInverse = (matrix: number[][]): number[][] => {
+  const m = matrix.length;
+  const n = matrix[0].length;
+  if (m !== n) {
+    throw new Error(
+      "Given matrix is not a square matrix, inverse cannot be calculated.",
+    );
+  }
+  const determinant = matrixDeterminant(matrix);
+  if (determinant === 0) {
+    throw new Error("This is a singular matrix, cannot find its inverse!!");
+  }
+  const adjointArray = matrixAdjoint(matrix);
+  const inverseArray: number[][] = new Array(m);
+  for (let i = 0; i < m; i++) {
+    inverseArray[i] = new Array(m).fill(0);
+  }
+  for (let i = 0; i < m; i++) {
+    for (let j = 0; j < m; j++) {
+      inverseArray[i][j] = parseFloat(
+        (adjointArray[i][j] / determinant).toFixed(6),
+      );
+    }
+  }
+  return inverseArray;
+};
+
+/**
+ * Flatten the multidimensional matrix into 1-D array.
+ * @param matrix
+ * @returns The flattened array.
+ */
+export const matrixFlatten = (matrix: any[]): any[] => {
+  const flatMatrix: any[] = [];
+  const flatten = (matrix: any[], flatMatrix: any[]) => {
+    for (let i = 0; i < matrix.length; i++) {
+      if (Array.isArray(matrix[i])) {
+        flatten(matrix[i], flatMatrix);
+      } else {
+        flatMatrix.push(matrix[i]);
+      }
+    }
+  };
+  flatten(matrix, flatMatrix);
+  return flatMatrix;
+};
