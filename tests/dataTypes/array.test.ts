@@ -19,6 +19,9 @@ import {
   variance,
   matrixTranspose,
   scalarMatrixMultiplication,
+  matrixInverse,
+  matrixAdjoint,
+  matrixDeterminant,
 } from "../../src";
 
 describe("Array Tests", () => {
@@ -277,5 +280,118 @@ describe("Array Tests", () => {
       [7, 0],
       [3, 1],
     ]);
+  });
+  test("Matrix Determinant", () => {
+    expect(
+      matrixDeterminant([
+        [1, 2, 1],
+        [0, 3, 4],
+        [3, 1, 4],
+      ]),
+    ).toBe(23);
+    expect(
+      matrixDeterminant([
+        [1, 0, 3],
+        [-1, -1, -3],
+        [0, 0, 6],
+      ]),
+    ).toBe(-6);
+    expect(() =>
+      matrixDeterminant([
+        [1, 2, -1],
+        [0, 3, 4],
+      ]),
+    ).toThrow(
+      "Given matrix is not a square matrix, determinant cannot be calculated.",
+    );
+  });
+  test("Matrix Adjoint", () => {
+    expect(
+      matrixAdjoint([
+        [1, 2, 3],
+        [4, 5, 6],
+        [7, 8, 9],
+      ]),
+    ).toStrictEqual([
+      [-3, 6, -3],
+      [6, -12, 6],
+      [-3, 6, -3],
+    ]);
+    expect(
+      matrixAdjoint([
+        [5, -2, 2, 7],
+        [1, 0, 0, 3],
+        [-3, 1, 5, 0],
+        [3, -1, -9, 4],
+      ]),
+    ).toStrictEqual([
+      [-12, 76, -60, -36],
+      [-56, 208, -82, -58],
+      [4, 4, -2, -10],
+      [4, 4, 20, 12],
+    ]);
+    expect(() =>
+      matrixAdjoint([
+        [1, 0, 0, 3],
+        [3, 2, 4, 5],
+      ]),
+    ).toThrow(
+      "Given matrix is not a square matrix, adjoint cannot be calculated.",
+    );
+  });
+  test("Matrix Inverse", () => {
+    expect(
+      matrixInverse([
+        [1, 2, 3],
+        [0, 1, 4],
+        [5, 6, 0],
+      ]),
+    ).toStrictEqual([
+      [-24, 18, 5],
+      [20, -15, -4],
+      [-5, 4, 1],
+    ]);
+    expect(
+      matrixInverse([
+        [0, 0, -1, 2],
+        [0, 1, 0, 0],
+        [9, 0, 0, 0],
+        [0, 0, 0, 1],
+      ]),
+    ).toStrictEqual([
+      [0, 0, 0.111111, 0],
+      [0, 1, 0, 0],
+      [-1, 0, 0, 2],
+      [0, 0, 0, 1],
+    ]);
+    expect(
+      matrixInverse([
+        [5, -2, 2, 7],
+        [1, 0, 0, 3],
+        [-3, 1, 5, 0],
+        [3, -1, -9, 4],
+      ]),
+    ).toStrictEqual([
+      [-0.136364, 0.863636, -0.681818, -0.409091],
+      [-0.636364, 2.363636, -0.931818, -0.659091],
+      [0.045455, 0.045455, -0.022727, -0.113636],
+      [0.045455, 0.045455, 0.227273, 0.136364],
+    ]);
+    expect(() =>
+      matrixInverse([
+        [1, 0, 0, 3],
+        [3, 2, 4, 5],
+      ]),
+    ).toThrow(
+      "Given matrix is not a square matrix, inverse cannot be calculated.",
+    );
+    expect(() =>
+      matrixInverse([
+        [2, 1, -1],
+        [1, 0, 1],
+        [2, 1, -1],
+      ]),
+    ).toThrow("his is a singular matrix, cannot find its inverse!!");
+    expect(matrixInverse([[5]])).toStrictEqual([[0.2]]);
   });
 });
